@@ -34,7 +34,9 @@ class ContentPage extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(CupertinoIcons.info),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/about_us');
+              },
             ),
           ],
         ),

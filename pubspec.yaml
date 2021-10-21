@@ -20,6 +20,8 @@ dependencies:
   clipboard: ^0.1.3
   scrollable_positioned_list: ^0.2.2
   provider: ^6.0.1
+  flutter_linkify: ^5.0.2
+  url_launcher: ^6.0.12
 
 dev_dependencies:
   flutter_test:
