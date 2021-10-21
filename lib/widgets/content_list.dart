@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/database_query.dart';
+import 'package:gems_tarifi/provider/item_bookmark_state.dart';
 import 'package:gems_tarifi/provider/search_state.dart';
 import 'package:gems_tarifi/widgets/content_item.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,8 @@ class ContentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
-      future: context.watch<SearchState>().getSearchContent.isNotEmpty
+      future: context.watch<SearchState>().getSearchContent.isNotEmpty ||
+          context.watch<ItemBookmarkState>().getBookmarkState
           ? _databaseQuery.getContentSearchResult(context.read<SearchState>().getSearchContent)
           : _databaseQuery.getAllContent(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/database_query.dart';
+import 'package:gems_tarifi/provider/item_bookmark_state.dart';
 import 'package:gems_tarifi/widgets/content_item.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:provider/provider.dart';
 
 class FavoriteList extends StatelessWidget {
   FavoriteList({Key? key}) : super(key: key);
@@ -12,7 +14,8 @@ class FavoriteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
-      future: _databaseQuery.getFavoriteContent(),
+      future: context.watch<ItemBookmarkState>().getBookmarkState ?
+      _databaseQuery.getFavoriteContent() : _databaseQuery.getFavoriteContent(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
             ? Scrollbar(

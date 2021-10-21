@@ -2,7 +2,9 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/model/content_model_item.dart';
+import 'package:gems_tarifi/provider/item_bookmark_state.dart';
 import 'package:share/share.dart';
+import 'package:provider/provider.dart';
 
 class BottomButtons extends StatelessWidget {
   const BottomButtons({Key? key, required this.item}) : super(key: key);
@@ -55,10 +57,9 @@ class BottomButtons extends StatelessWidget {
           },
         ),
         IconButton(
-          icon: Icon(item.favorite == 0
-                  ? CupertinoIcons.bookmark
-                  : CupertinoIcons.bookmark_fill, color: Colors.blue),
+          icon: Icon(item.favorite == 0 ? CupertinoIcons.bookmark : CupertinoIcons.bookmark_fill, color: Colors.blue),
           onPressed: () {
+            context.read<ItemBookmarkState>().updateBookmarkState(item.favorite == 0 ? 1 : 0, item.id!);
             _showSnackBar(context, false);
           },
         )
