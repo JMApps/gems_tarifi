@@ -30,7 +30,7 @@ class CategoryList extends StatelessWidget {
                         color: Colors.brown[100],
                       ),
                       const Text(
-                        'В данной категории содержимого нет',
+                        'В данной категории нет содержимого',
                         style: TextStyle(fontSize: 18, color: Colors.grey),
                       ),
                     ],
