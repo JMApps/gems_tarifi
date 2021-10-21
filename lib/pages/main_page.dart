@@ -18,10 +18,10 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 250),
         child: _mainPages[context.watch<BottomNavigationState>().getSelectedIndex],
-        switchInCurve: Curves.easeIn,
-        switchOutCurve: Curves.easeOut,
+        switchInCurve: Curves.easeInCubic,
+        switchOutCurve: Curves.easeOutCubic,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
