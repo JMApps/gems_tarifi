@@ -17,7 +17,10 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _mainPages[context.watch<BottomNavigationState>().getSelectedIndex],
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 250),
+        child: _mainPages[context.watch<BottomNavigationState>().getSelectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -34,7 +37,7 @@ class MainPage extends StatelessWidget {
           ),
         ],
         selectedItemColor: Colors.brown[800],
-        unselectedItemColor: Colors.grey[700],
+        unselectedItemColor: Colors.grey,
         currentIndex: context.watch<BottomNavigationState>().getSelectedIndex,
         onTap: context.read<BottomNavigationState>().updateSelectedIndex,
       ),
