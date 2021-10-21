@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/database_query.dart';
 import 'package:gems_tarifi/provider/item_bookmark_state.dart';
 import 'package:gems_tarifi/widgets/content_item.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteList extends StatelessWidget {
@@ -19,12 +18,11 @@ class FavoriteList extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
             ? Scrollbar(
-                child: ScrollablePositionedList.builder(
-                  //itemScrollController: _itemScrollController,
+                child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ContentItem(item: snapshot.data![index]);
+                      return ContentItem(item: snapshot.data![index]);
                   },
                 ),
               )

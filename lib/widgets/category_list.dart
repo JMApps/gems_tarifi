@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/database_query.dart';
-import 'package:gems_tarifi/widgets/content_item.dart';
+import 'package:gems_tarifi/widgets/category_item.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class CategoryList extends StatelessWidget {
@@ -44,7 +44,7 @@ class CategoryList extends StatelessWidget {
                       physics: BouncingScrollPhysics(),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ContentItem(item: snapshot.data![index]);
+                        return CategoryItem(item: snapshot.data![index]);
                       },
                     ),
                   )
