@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/widgets/category_drop_down_list.dart';
 import 'package:gems_tarifi/widgets/category_list.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -37,7 +38,14 @@ class CategoryPage extends StatelessWidget {
           ),
         ],
       ),
-      body: CategoryList(),
+      body: Column(
+        children: [
+          CategoryDropdownList(),
+          Expanded(
+            child: CategoryList(),
+          ),
+        ],
+      ),
     );
   }
 }
