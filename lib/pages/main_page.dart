@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gems_tarifi/pages/category_page.dart';
 import 'package:gems_tarifi/pages/content_page.dart';
 import 'package:gems_tarifi/pages/favorite_page.dart';
+import 'package:gems_tarifi/provider/app_settings_state.dart';
 import 'package:gems_tarifi/provider/bottom_navigation_state.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<AppSettingsState>().initPreferences();
     return Scaffold(
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 250),

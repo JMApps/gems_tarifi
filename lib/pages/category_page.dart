@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/widgets/app_settings.dart';
 import 'package:gems_tarifi/widgets/category_drop_down_list.dart';
 import 'package:gems_tarifi/widgets/category_list.dart';
 
@@ -27,8 +28,18 @@ class CategoryPage extends StatelessWidget {
         backgroundColor: Colors.brown[800],
         actions: [
           IconButton(
-            icon: const Icon(CupertinoIcons.settings),
-            onPressed: () {},
+            onPressed: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (BuildContext context) {
+                  return const AppSettings();
+                },
+              );
+            },
+            icon: const Icon(
+              CupertinoIcons.settings,
+              color: Colors.white,
+            ),
           ),
           IconButton(
             icon: const Icon(CupertinoIcons.info),

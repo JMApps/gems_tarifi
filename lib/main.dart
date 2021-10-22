@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/provider/app_settings_state.dart';
 import 'package:gems_tarifi/provider/bottom_navigation_state.dart';
 import 'package:gems_tarifi/provider/item_bookmark_state.dart';
 import 'package:gems_tarifi/provider/search_state.dart';
@@ -13,6 +14,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => SearchState()),
         ChangeNotifierProvider(create: (_) => BottomNavigationState()),
         ChangeNotifierProvider(create: (_) => ItemBookmarkState()),
+        ChangeNotifierProvider(create: (_) => AppSettingsState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

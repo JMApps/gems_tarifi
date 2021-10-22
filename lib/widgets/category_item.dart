@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:gems_tarifi/model/content_model_item.dart';
+import 'package:gems_tarifi/provider/app_settings_state.dart';
 import 'package:gems_tarifi/widgets/bottom_buttons.dart';
+import 'package:provider/provider.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({Key? key, required this.item}) : super(key: key);
+  CategoryItem({Key? key, required this.item}) : super(key: key);
 
   final ContentModelItem item;
+
+  final List<TextAlign> _getTextAlign = [
+    TextAlign.left,
+    TextAlign.center,
+    TextAlign.right,
+    TextAlign.justify,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +35,9 @@ class CategoryItem extends StatelessWidget {
               data: item.content,
               style: {
                 '#': Style(
-                    fontSize: FontSize(20),
-                    textAlign: TextAlign.center, // Добавить в настройки
+                    fontSize: FontSize(context.watch<AppSettingsState>().getTextSize),
+                    color: context.watch<AppSettingsState>().getArabicTextColor,
+                    textAlign: _getTextAlign[context.watch<AppSettingsState>().getToggleButtonIndex],
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero),
               },
