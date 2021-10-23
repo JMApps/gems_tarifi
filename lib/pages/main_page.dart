@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gems_tarifi/pages/category_page.dart';
 import 'package:gems_tarifi/pages/content_page.dart';
 import 'package:gems_tarifi/pages/favorite_page.dart';
 import 'package:gems_tarifi/provider/app_settings_state.dart';
@@ -12,7 +11,7 @@ class MainPage extends StatelessWidget {
   final List _mainPages = [
     ContentPage(),
     FavoritePage(),
-    CategoryPage(),
+    //CategoryPage(),
   ];
 
   @override
@@ -35,10 +34,10 @@ class MainPage extends StatelessWidget {
             label: 'Избранное',
             icon: Icon(Icons.bookmark),
           ),
-          BottomNavigationBarItem(
-            label: 'Категории',
-            icon: Icon(Icons.category),
-          ),
+          // BottomNavigationBarItem(
+          //   label: 'Категории',
+          //   icon: Icon(Icons.category),
+          // ),
         ],
         selectedItemColor: Colors.brown[800],
         unselectedItemColor: Colors.grey,

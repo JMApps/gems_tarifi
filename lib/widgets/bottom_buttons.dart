@@ -59,9 +59,9 @@ class BottomButtons extends StatelessWidget {
           },
         ),
         IconButton(
-          icon: Icon(item.favorite == 0 ? CupertinoIcons.bookmark : CupertinoIcons.bookmark_fill, color: Colors.blue),
+          icon: Icon(item.favoriteState == 0 ? CupertinoIcons.bookmark : CupertinoIcons.bookmark_fill, color: Colors.blue),
           onPressed: () {
-            context.read<ItemBookmarkState>().updateBookmarkState(item.favorite == 0 ? 1 : 0, item.id!);
+            context.read<ItemBookmarkState>().updateBookmarkState(item.favoriteState == 0 ? 1 : 0, item.id!);
             _showSnackBar(context, false);
           },
         )
@@ -76,7 +76,7 @@ class BottomButtons extends StatelessWidget {
         content: Text(
           copy
               ? 'Скопировано'
-              : item.favorite == 0
+              : item.favoriteState == 0
                   ? 'Добавлено'
                   : 'Удалено',
           style: TextStyle(fontSize: 18),

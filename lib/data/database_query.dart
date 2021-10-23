@@ -13,7 +13,7 @@ class DatabaseQuery {
 
   Future<List<ContentModelItem>> getFavoriteContent() async {
     var dbClient = await con.db;
-    var res = await dbClient.query('Table_of_content', where: 'favorite == 1');
+    var res = await dbClient.query('Table_of_content', where: 'favorite_state == 1');
     List<ContentModelItem>? favoriteContent = res.isNotEmpty ? res.map((c) => ContentModelItem.fromMap(c)).toList() : null;
     return favoriteContent!;
   }
@@ -27,6 +27,6 @@ class DatabaseQuery {
 
   addRemoveFavorite(int state, int _id) async {
     var dbClient = await con.db;
-    await dbClient.rawQuery('UPDATE Table_of_content SET favorite = $state WHERE _id == $_id');
+    await dbClient.rawQuery('UPDATE Table_of_content SET favorite_state = $state WHERE _id == $_id');
   }
 }
