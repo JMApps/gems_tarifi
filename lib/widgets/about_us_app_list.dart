@@ -29,7 +29,7 @@ class AboutUsAppList extends StatelessWidget {
               AboutUsAppItem(
                   title: 'Жемчужины Тарифи',
                   subTitle:
-                      'Высказывания достопочтенного шейха Абдуль-Азиза ат-Тарифи',
+                      'Высказывания достопочтенного шейха ‘Абдуль-‘Азиза ат-Тарифи',
                   appLink:
                       'https://play.google.com/store/apps/details?id=jmapps.gemstarifi'),
               Divider(indent: 16, endIndent: 16),

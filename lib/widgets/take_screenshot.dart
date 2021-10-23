@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/shims/dart_ui_real.dart';
 import 'package:gems_tarifi/model/content_model_item.dart';
-import 'package:html/parser.dart';
 
 class TakeScreenShot extends StatelessWidget {
   const TakeScreenShot({Key? key, required this.item}) : super(key: key);
@@ -47,7 +46,7 @@ class TakeScreenShot extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Шейх Абдуль-Азиз ат-Тарифи',
+                        'Шейх ‘Абдуль-‘Азиз ат-Тарифи',
                         style: const TextStyle(
                           fontSize: 20,
                           fontFamily: 'Gilroy',
@@ -90,12 +89,5 @@ class TakeScreenShot extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _parseHtmlString(String htmlString) {
-    final documentText = parse(htmlString);
-    final String parsedString =
-        parse(documentText.body!.text).documentElement!.text;
-    return parsedString;
   }
 }
