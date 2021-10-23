@@ -24,6 +24,7 @@ class TakeScreenShot extends StatelessWidget {
                 margin: const EdgeInsets.all(8),
                 child: Container(
                   decoration: BoxDecoration(
+                    color: Colors.brown[800],
                     borderRadius: BorderRadius.circular(25),
                     image: DecorationImage(
                       colorFilter: ColorFilter.mode(Colors.brown.withOpacity(0.1), BlendMode.dstATop),
@@ -41,7 +42,7 @@ class TakeScreenShot extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 20,
                           fontFamily: 'Gilroy',
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -50,11 +51,11 @@ class TakeScreenShot extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 20,
                           fontFamily: 'Gilroy',
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 4),
-                      const Divider(indent: 16, endIndent: 16),
+                      const Divider(indent: 16, endIndent: 16, color: Colors.white,),
                       const SizedBox(height: 4),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -76,6 +77,7 @@ class TakeScreenShot extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontFamily: 'Gilroy',
+                              color: Colors.white
                             ),
                           ),
                         ],
