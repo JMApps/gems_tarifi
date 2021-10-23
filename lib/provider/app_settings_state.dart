@@ -7,7 +7,7 @@ class AppSettingsState with ChangeNotifier {
 
   double get getTextSize => _textSize;
 
-  Color _textColor = Colors.black54;
+  Color _textColor = Colors.black;
 
   Color get getArabicTextColor => _textColor;
 
@@ -56,7 +56,7 @@ class AppSettingsState with ChangeNotifier {
   initPreferences() async {
     final preferences = await SharedPreferences.getInstance();
     _textSize = preferences.getDouble('key_text_size_value') ?? 20;
-    _textColor = Color(preferences.getInt('key_text_color_value') ?? Colors.black54.value);
+    _textColor = Color(preferences.getInt('key_text_color_value') ?? Colors.black.value);
     _toggleButtonIndex = preferences.getInt("key_toggle_button_index") ?? 0;
     for (int i = 0; i < _isSelected.length; i++) {
       _isSelected[i] = i == _toggleButtonIndex;

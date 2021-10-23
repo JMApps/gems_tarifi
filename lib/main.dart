@@ -3,6 +3,7 @@ import 'package:gems_tarifi/provider/app_settings_state.dart';
 import 'package:gems_tarifi/provider/bottom_navigation_state.dart';
 import 'package:gems_tarifi/provider/item_bookmark_state.dart';
 import 'package:gems_tarifi/provider/search_state.dart';
+import 'package:gems_tarifi/provider/take_screenshot_state.dart';
 import 'package:gems_tarifi/router/app_router.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => BottomNavigationState()),
         ChangeNotifierProvider(create: (_) => ItemBookmarkState()),
         ChangeNotifierProvider(create: (_) => AppSettingsState()),
+        ChangeNotifierProvider(create: (_) => TakeScreenshotState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

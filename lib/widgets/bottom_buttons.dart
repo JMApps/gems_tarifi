@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/model/content_model_item.dart';
 import 'package:gems_tarifi/provider/item_bookmark_state.dart';
+import 'package:gems_tarifi/provider/take_screenshot_state.dart';
 import 'package:share/share.dart';
 import 'package:provider/provider.dart';
 
@@ -54,6 +55,7 @@ class BottomButtons extends StatelessWidget {
             color: Colors.blue,
           ),
           onPressed: () {
+            context.read<TakeScreenshotState>().takeScreenshot(item);
           },
         ),
         IconButton(

@@ -24,6 +24,7 @@ dependencies:
   url_launcher: ^6.0.12
   shared_preferences: ^2.0.8
   o_color_picker: ^1.0.2
+  screenshot: ^1.2.3
 
 dev_dependencies:
   flutter_test:
