@@ -27,7 +27,7 @@ class DatabaseHelper {
         ? await getExternalStorageDirectory()
         : await getApplicationSupportDirectory();
 
-    String path = join(documentDirectory!.path, 'gems_db_1.db');
+    String _path = join(documentDirectory!.path, 'gems_db_1.db');
 
     String _toDelete_1 = '${documentDirectory.path}/gems_db.db';
     var _del_1 = await databaseExists(_toDelete_1);
@@ -36,23 +36,21 @@ class DatabaseHelper {
       await deleteDatabase(_toDelete_1);
     }
 
-    var _exists = await databaseExists(path);
+    var _exists = await databaseExists(_path);
 
     if (!_exists) {
       try {
-        await Directory(dirname(path)).create(recursive: true);
+        await Directory(dirname(_path)).create(recursive: true);
       } catch (_) {
         Exception('Invalid database');
       }
 
       ByteData data = await rootBundle.load(join('assets/databases', 'gems_db_1.db'));
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await File(path).writeAsBytes(bytes, flush: true);
+      await File(_path).writeAsBytes(bytes, flush: true);
     }
 
-    var bomDataTable = await openDatabase(path, version: _databaseVersion, onUpgrade: _onUpgrade);
-    return bomDataTable;
+    var _onOpen = await openDatabase(_path, version: _databaseVersion);
+    return _onOpen;
   }
-
-  _onUpgrade(Database db, int oldVersion, int newVersion) async {}
 }
