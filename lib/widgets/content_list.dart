@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/database_query.dart';
 import 'package:gems_tarifi/provider/item_bookmark_state.dart';
+import 'package:gems_tarifi/provider/scroll_positioned_state.dart';
 import 'package:gems_tarifi/provider/search_state.dart';
 import 'package:gems_tarifi/widgets/content_item.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +47,7 @@ class ContentList extends StatelessWidget {
             : snapshot.hasData
                 ? Scrollbar(
                     child: ScrollablePositionedList.builder(
-                      //itemScrollController: _itemScrollController,
+                      itemScrollController: context.read<ScrollPositionedState>().getScrollPositioned,
                       physics: BouncingScrollPhysics(),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {

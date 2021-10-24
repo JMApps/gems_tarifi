@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/provider/scroll_positioned_state.dart';
 import 'package:gems_tarifi/widgets/app_settings.dart';
 import 'package:gems_tarifi/widgets/content_list.dart';
 import 'package:gems_tarifi/widgets/search_container.dart';
+import 'package:provider/provider.dart';
 
 class ContentPage extends StatelessWidget {
   ContentPage({Key? key}) : super(key: key);
@@ -70,13 +72,7 @@ class ContentPage extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            // toIndex() {
-//   var randomNumber = Random();
-//   _itemScrollController.scrollTo(
-//       index: randomNumber.nextInt(300),
-//       duration: Duration(milliseconds: 650),
-//       curve: Curves.easeInOutQuart);
-// }
+            context.read<ScrollPositionedState>().toIndex();
           },
         ),
       ),
