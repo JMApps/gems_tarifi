@@ -10,6 +10,7 @@ class DatabaseHelper {
 
   factory DatabaseHelper() => _instance;
   static Database? _db;
+  final _databaseVersion = 1;
 
   Future<Database> get db async {
     if (_db != null) {
@@ -25,28 +26,31 @@ class DatabaseHelper {
     Directory? documentDirectory = Platform.isAndroid
         ? await getExternalStorageDirectory()
         : await getApplicationSupportDirectory();
-    String path = join(documentDirectory!.path, 'gems_db.db');
 
-    // Проверяем, существует ли база данных
-    var exists = await databaseExists(path);
+    String path = join(documentDirectory!.path, 'gems_db_1.db');
 
-    if (!exists) {
-      // Должно произойти только первый раз, когда вы запускаете свое приложение
-      print('Создание новой копии из актива');
+    String _toDelete_1 = '${documentDirectory.path}/gems_db.db';
+    var _del_1 = await databaseExists(_toDelete_1);
+
+    if (_del_1) {
+      await deleteDatabase(_toDelete_1);
+    }
+
+    var _exists = await databaseExists(path);
+
+    if (!_exists) {
       try {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {
         Exception('Invalid database');
       }
-      // Копировать из актива
-      ByteData data = await rootBundle.load(join('assets/databases', 'gems_db.db'));
+
+      ByteData data = await rootBundle.load(join('assets/databases', 'gems_db_1.db'));
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
-    } else {
-      print('Открытие существующей базы данных');
     }
-    // Открываем базу данных
-    var bomDataTable = await openDatabase(path, version: 1, onUpgrade: _onUpgrade);
+
+    var bomDataTable = await openDatabase(path, version: _databaseVersion, onUpgrade: _onUpgrade);
     return bomDataTable;
   }
 
