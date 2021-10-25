@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/provider/scroll_positioned_state.dart';
@@ -5,6 +7,7 @@ import 'package:gems_tarifi/widgets/app_settings.dart';
 import 'package:gems_tarifi/widgets/content_list.dart';
 import 'package:gems_tarifi/widgets/search_container.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContentPage extends StatelessWidget {
   ContentPage({Key? key}) : super(key: key);
@@ -46,9 +49,13 @@ class ContentPage extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(CupertinoIcons.info),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/about_us');
+              icon: const Icon(
+                Icons.apps,
+                color: Colors.white,
+              ),
+              onPressed: () async {
+                Platform.isIOS ? await launch('https://apps.apple.com/ru/developer/imanil-binyaminov/id1564920953') :
+                await launch('https://play.google.com/store/apps/dev?id=8649252597553656018');
               },
             ),
           ],

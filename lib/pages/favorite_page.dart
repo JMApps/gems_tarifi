@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/widgets/app_settings.dart';
 import 'package:gems_tarifi/widgets/favorite_list.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FavoritePage extends StatelessWidget {
   FavoritePage({Key? key}) : super(key: key);
@@ -41,9 +42,18 @@ class FavoritePage extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: const Icon(CupertinoIcons.info),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/about_us');
+            icon: const Icon(
+              Icons.apps,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              if (await canLaunch(
+                  'https://apps.apple.com/ru/developer/imanil-binyaminov/id1564920953')) {
+                await launch(
+                    'https://apps.apple.com/ru/developer/imanil-binyaminov/id1564920953');
+              } else {
+                throw 'Could not launch';
+              }
             },
           ),
         ],
