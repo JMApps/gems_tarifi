@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
 import 'package:gems_tarifi/presentation/widgets/content_item.dart';
-import 'package:gems_tarifi/provider/main_app_state.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteList extends StatelessWidget {

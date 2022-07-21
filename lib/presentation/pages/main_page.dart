@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
 import 'package:gems_tarifi/presentation/pages/content_page.dart';
 import 'package:gems_tarifi/presentation/pages/favorite_page.dart';
 import 'package:gems_tarifi/presentation/pages/settings_page.dart';
-import 'package:gems_tarifi/provider/main_app_state.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
