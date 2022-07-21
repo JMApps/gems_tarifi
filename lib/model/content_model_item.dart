@@ -1,20 +1,19 @@
 class ContentModelItem {
-  int? id;
-  String? content;
-  String? contentForShare;
-  String? tag;
-  String? allTag;
-  int? favoriteState;
+  final int id;
+  final String content;
+  final String contentForShare;
+  final int favoriteState;
 
   ContentModelItem(
-      this.id, this.content, this.contentForShare, this.tag, this.allTag, this.favoriteState);
+    this.id,
+    this.content,
+    this.contentForShare,
+    this.favoriteState,
+  );
 
-  ContentModelItem.fromMap(dynamic obj) {
-    this.id = obj['_id'];
-    this.content = obj['content'];
-    this.contentForShare = obj['content_for_share'];
-    this.tag = obj['tag'];
-    this.allTag = obj['all_tag'];
-    this.favoriteState = obj['favorite_state'];
-  }
+  ContentModelItem.fromMap(dynamic obj)
+      : id = obj['id'],
+        content = obj['content'],
+        contentForShare = obj['content_for_share'],
+        favoriteState = obj['favorite_state'];
 }
