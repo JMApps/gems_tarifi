@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
+import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:gems_tarifi/presentation/pages/content_page.dart';
 import 'package:gems_tarifi/presentation/pages/favorite_page.dart';
 import 'package:gems_tarifi/presentation/pages/settings_page.dart';
@@ -39,7 +40,7 @@ class MainPagesPage extends StatelessWidget {
             icon: Icon(CupertinoIcons.settings),
           ),
         ],
-        selectedItemColor: Colors.brown[800],
+        selectedItemColor: Theme.of(context).colorScheme.mainAccentColor,
         unselectedItemColor: Colors.grey,
         currentIndex: context.watch<MainAppState>().getSelectedIndex,
         onTap: context.read<MainAppState>().updateSelectedIndex,

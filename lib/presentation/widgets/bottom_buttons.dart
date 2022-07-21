@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/model/content_model_item.dart';
 import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
+import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -13,6 +14,7 @@ class BottomButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myColor = Theme.of(context).colorScheme;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -21,12 +23,12 @@ class BottomButtons extends StatelessWidget {
           onPressed: null,
           icon: Image.asset(
             'assets/images/pearl_50.png',
-            color: Colors.deepPurple,
+            color: myColor.mainAccentColor,
             scale: 1.8,
           ),
           label: Text(
             '– ${item.id}',
-            style: const TextStyle(fontSize: 18, color: Colors.deepPurple),
+            style: TextStyle(fontSize: 18, color: myColor.mainAccentColor,),
           ),
         ),
         IconButton(
@@ -62,7 +64,7 @@ class BottomButtons extends StatelessWidget {
               item.favoriteState == 0
                   ? CupertinoIcons.bookmark
                   : CupertinoIcons.bookmark_fill,
-              color: Colors.deepPurple),
+              color: myColor.mainAccentColor,),
           onPressed: () {
             context.read<MainAppState>().updateBookmarkState(
                   item.favoriteState == 0 ? 1 : 0,
@@ -78,7 +80,7 @@ class BottomButtons extends StatelessWidget {
   _showSnackBar(BuildContext context, bool copy) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.purple,
+        backgroundColor: Theme.of(context).colorScheme.mainAccentColor,
         content: Text(
           copy
               ? 'Скопировано'

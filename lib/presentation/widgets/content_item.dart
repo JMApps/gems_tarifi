@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:gems_tarifi/data/model/content_model_item.dart';
+import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:gems_tarifi/presentation/widgets/bottom_buttons.dart';
 
 class ContentItem extends StatelessWidget {
@@ -10,8 +11,9 @@ class ContentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myColor = Theme.of(context).colorScheme;
     return Card(
-      color: item.id.isOdd ? Colors.white : Colors.brown[50],
+      color: item.id.isOdd ? myColor.cardColorIsOdd : myColor.cardColorIsNotOdd,
       elevation: 3,
       margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(

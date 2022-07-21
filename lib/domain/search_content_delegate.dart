@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/data/model/content_model_item.dart';
 import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
+import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:gems_tarifi/presentation/widgets/content_item.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class SearchContentDelegate extends SearchDelegate {
           ? IconButton(
               icon: AnimatedIcon(
                 icon: AnimatedIcons.menu_close,
-                color: Colors.purple,
+                color: Theme.of(context).colorScheme.mainAccentColor,
                 progress: transitionAnimation,
               ),
               onPressed: () {
@@ -39,7 +40,7 @@ class SearchContentDelegate extends SearchDelegate {
     return IconButton(
       icon: Icon(
         Icons.arrow_back_ios,
-        color: Colors.purple,
+        color: Theme.of(context).colorScheme.mainAccentColor,
       ),
       onPressed: () {
         close(context, null);

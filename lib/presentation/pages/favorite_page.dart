@@ -21,9 +21,6 @@ class FavoritePage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.brown[800],
       ),
       body: CupertinoScrollbar(
         child: FavoriteList(),

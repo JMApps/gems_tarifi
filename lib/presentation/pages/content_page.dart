@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/domain/search_content_delegate.dart';
 import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
+import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:gems_tarifi/presentation/widgets/content_list.dart';
 import 'package:provider/provider.dart';
 
@@ -23,9 +24,6 @@ class ContentPage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.brown[800],
         actions: [
           IconButton(
             splashRadius: 20,
@@ -42,8 +40,7 @@ class ContentPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepPurple,
-        splashColor: Colors.purpleAccent,
+        backgroundColor: Theme.of(context).colorScheme.mainAccentColor,
         mini: true,
         child: Center(
           child: Icon(
