@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/shims/dart_ui_real.dart';
-import 'package:gems_tarifi/model/content_model_item.dart';
+import 'package:gems_tarifi/data/model/content_model_item.dart';
 
 class TakeScreenShot extends StatelessWidget {
   const TakeScreenShot({Key? key, required this.item}) : super(key: key);
@@ -38,7 +37,7 @@ class TakeScreenShot extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        item.contentForShare!,
+                        item.contentForShare,
                         style: const TextStyle(
                           fontSize: 20,
                           fontFamily: 'Gilroy',
