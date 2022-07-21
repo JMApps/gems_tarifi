@@ -6,11 +6,13 @@ class AppSettingsState with ChangeNotifier {
 
   var mainSettingsBox = Hive.box(Constants.keyMainSettings);
 
-  ThemeMode themeMode = ThemeMode.system;
+  List<bool> _isSelected = [false, false, false, true];
 
-  ThemeMode get getThemeMode => themeMode;
+  List<bool> get getIsSelected => _isSelected;
 
-  bool isDarkTheme = false;
+  int _toggleButtonIndex = 3;
+
+  int get getToggleButtonIndex => _toggleButtonIndex;
 
   double _textSize = 20;
 
@@ -24,13 +26,13 @@ class AppSettingsState with ChangeNotifier {
 
   bool get getIsDefaultColor => _isDefaultColor;
 
-  final List<bool> _isSelected = [false, false, false, true];
+  ThemeMode _themeMode = ThemeMode.system;
 
-  int _toggleButtonIndex = 3;
+  ThemeMode get getThemeMode => _themeMode;
 
-  int get getToggleButtonIndex => _toggleButtonIndex;
+  bool _isDarkTheme = false;
 
-  List<bool> get getIsSelected => _isSelected;
+  bool get getIsDarkTheme => _isDarkTheme;
 
   final List<TextAlign> _textAlign = [
     TextAlign.left,
@@ -41,15 +43,22 @@ class AppSettingsState with ChangeNotifier {
 
   List<TextAlign> get getTextAlign => _textAlign;
 
-  changeTheme(bool state) {
-    isDarkTheme = state;
-    isDarkTheme ? themeMode = ThemeMode.dark : themeMode = ThemeMode.system;
-    mainSettingsBox.put(Constants.keyThemeMode, state);
+  updateToggleTextLayout(int index) {
+    _toggleButtonIndex = index;
+    for (int i = 0; i < _isSelected.length; i++) {
+      _isSelected[i] = i == _toggleButtonIndex;
+    }
+    mainSettingsBox.put(Constants.keyContentTextAlignIndex, _toggleButtonIndex);
     notifyListeners();
   }
 
   updateTextSizeValue(double newSizeValue) {
     _textSize = newSizeValue;
+    notifyListeners();
+  }
+
+  saveValue(String key, double value) async {
+    await mainSettingsBox.put(key, value);
     notifyListeners();
   }
 
@@ -65,27 +74,22 @@ class AppSettingsState with ChangeNotifier {
     notifyListeners();
   }
 
-  updateToggleTextLayout(int index) {
-    _toggleButtonIndex = index;
-    for (int i = 0; i < _isSelected.length; i++) {
-      _isSelected[i] = i == _toggleButtonIndex;
-    }
+  changeTheme(bool state) {
+    _isDarkTheme = state;
+    _themeMode = _isDarkTheme ? ThemeMode.dark : ThemeMode.system;
+    mainSettingsBox.put(Constants.keyThemeMode, _isDarkTheme);
     notifyListeners();
   }
 
-  saveState(String key, var value) {
-    mainSettingsBox.put(key, value);
-    notifyListeners();
-  }
-
-  initPreferences() async {
-    _textSize = mainSettingsBox.get(Constants.keyContentTextSize);
-    _textColor = mainSettingsBox.get(Constants.keyContentTextColor);
-    _isDefaultColor = mainSettingsBox.get(Constants.keyContentDefaultTextColor);
-    _toggleButtonIndex = mainSettingsBox.get(Constants.keyContentTextAlignIndex);
+  initSettings() {
+    _toggleButtonIndex = mainSettingsBox.get(Constants.keyContentTextAlignIndex) ?? 3;
     for (int i = 0; i < _isSelected.length; i++) {
       _isSelected[i] = i == _toggleButtonIndex;
     }
-    themeMode = isDarkTheme ? ThemeMode.dark : ThemeMode.system;
+    //_textSize = mainSettingsBox.get(Constants.keyContentTextSize) ?? 18;
+    _textColor = mainSettingsBox.get(Constants.keyContentTextColor) ?? Color(0xff363636).value;
+    _isDefaultColor = mainSettingsBox.get(Constants.keyContentDefaultTextColor) ?? false;
+    _isDarkTheme = mainSettingsBox.get(Constants.keyThemeMode) ?? false;
+    _themeMode = _isDarkTheme ? ThemeMode.dark : ThemeMode.system;
   }
 }
