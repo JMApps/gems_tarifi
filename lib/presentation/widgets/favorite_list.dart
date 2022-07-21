@@ -9,8 +9,7 @@ class FavoriteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
-      future:
-          context.watch<MainAppState>().getDatabaseQuery.getFavoriteContent(),
+      future: context.watch<MainAppState>().getDatabaseQuery.getFavoriteContent(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
             ? ListView.builder(

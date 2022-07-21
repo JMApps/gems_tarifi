@@ -12,11 +12,6 @@ class ContentList extends StatelessWidget {
     return FutureBuilder<List>(
       future: context.watch<MainAppState>().getDatabaseQuery.getAllContent(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: Text('${snapshot.error}'),
-          );
-        }
         return snapshot.hasData
             ? ScrollablePositionedList.builder(
                 itemScrollController: context.read<MainAppState>().getScrollPositioned,

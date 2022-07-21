@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/domain/search_content_delegate.dart';
+import 'package:gems_tarifi/domain/states/provider/main_app_state.dart';
 import 'package:gems_tarifi/presentation/widgets/content_list.dart';
+import 'package:provider/provider.dart';
 
 class ContentPage extends StatelessWidget {
   ContentPage({Key? key}) : super(key: key);
@@ -29,7 +32,12 @@ class ContentPage extends StatelessWidget {
             icon: Icon(
               CupertinoIcons.search,
             ),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchContentDelegate(),
+              );
+            },
           ),
         ],
       ),
@@ -44,7 +52,7 @@ class ContentPage extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          // Вызвать контроллер для перехода
+          context.read<MainAppState>().toIndex();
         },
       ),
       body: CupertinoScrollbar(
