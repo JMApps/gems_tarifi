@@ -1,5 +1,5 @@
 import 'package:gems_tarifi/data/database/database_helper.dart';
-import 'package:gems_tarifi/model/content_model_item.dart';
+import 'package:gems_tarifi/data/model/content_model_item.dart';
 
 class DatabaseQuery {
   DatabaseHelper con = DatabaseHelper();
@@ -20,6 +20,6 @@ class DatabaseQuery {
 
   addRemoveFavorite(int state, int _id) async {
     var dbClient = await con.db;
-    await dbClient.rawQuery('UPDATE Table_of_content SET favorite_state = $state WHERE _id == $_id');
+    await dbClient.rawQuery('UPDATE Table_of_content SET favorite_state = $state WHERE id == $_id');
   }
 }
