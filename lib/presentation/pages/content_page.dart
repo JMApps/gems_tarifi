@@ -23,6 +23,15 @@ class ContentPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.brown[800],
+        actions: [
+          IconButton(
+            splashRadius: 20,
+            icon: Icon(
+              CupertinoIcons.search,
+            ),
+            onPressed: () {},
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
