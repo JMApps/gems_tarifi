@@ -13,6 +13,6 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(Constants.keyMainSettings);
   runApp(
-    MainPage(),
+    const MainPage(),
   );
 }

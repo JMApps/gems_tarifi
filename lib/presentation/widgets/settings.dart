@@ -57,10 +57,10 @@ class Settings extends StatelessWidget {
                   value: context.watch<AppSettingsState>().getTextSize,
                   onChanged: (currentTextSize) {
                     appSettings.updateTextSizeValue(currentTextSize);
+                    appSettings.saveValue(Constants.keyContentTextSize, currentTextSize);
                   },
                   onChangeEnd: (lastTextSizeValue) {
-                    appSettings.saveValue(
-                        Constants.keyContentTextSize, lastTextSizeValue);
+
                   },
                 ),
                 trailing: Text(
@@ -74,7 +74,7 @@ class Settings extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
                 leading: Icon(
                   Icons.palette_outlined,
-                  color: Color(appSettings.getTextColor),
+                  color: myColor.mainTextColor,
                 ),
                 title: const Text(
                   'Цвет текста',

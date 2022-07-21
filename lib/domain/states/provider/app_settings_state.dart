@@ -14,7 +14,7 @@ class AppSettingsState with ChangeNotifier {
 
   int get getToggleButtonIndex => _toggleButtonIndex;
 
-  double _textSize = 20;
+  double _textSize = 20.0;
 
   double get getTextSize => _textSize;
 
@@ -82,14 +82,14 @@ class AppSettingsState with ChangeNotifier {
   }
 
   initSettings() {
-    _toggleButtonIndex = mainSettingsBox.get(Constants.keyContentTextAlignIndex) ?? 3;
+    _toggleButtonIndex = mainSettingsBox.get(Constants.keyContentTextAlignIndex, defaultValue: 3);
     for (int i = 0; i < _isSelected.length; i++) {
       _isSelected[i] = i == _toggleButtonIndex;
     }
-    //_textSize = mainSettingsBox.get(Constants.keyContentTextSize) ?? 18;
-    _textColor = mainSettingsBox.get(Constants.keyContentTextColor) ?? Color(0xff363636).value;
-    _isDefaultColor = mainSettingsBox.get(Constants.keyContentDefaultTextColor) ?? false;
-    _isDarkTheme = mainSettingsBox.get(Constants.keyThemeMode) ?? false;
+    _textSize = mainSettingsBox.get(Constants.keyContentTextSize, defaultValue: 20.0);
+    _textColor = mainSettingsBox.get(Constants.keyContentTextColor, defaultValue: Color(0xff363636).value);
+    _isDefaultColor = mainSettingsBox.get(Constants.keyContentDefaultTextColor, defaultValue: false);
+    _isDarkTheme = mainSettingsBox.get(Constants.keyThemeMode, defaultValue: false);
     _themeMode = _isDarkTheme ? ThemeMode.dark : ThemeMode.system;
   }
 }
