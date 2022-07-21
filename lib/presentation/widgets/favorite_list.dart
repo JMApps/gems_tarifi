@@ -31,11 +31,11 @@ class FavoriteList extends StatelessWidget {
                         size: 150,
                         color: Colors.brown[100],
                       ),
-                      const Text(
+                      Text(
                         'Список избранного пуст',
                         style: TextStyle(
                           fontSize: 18,
-                          color: Colors.black45,
+                          color: Colors.brown[100],
                         ),
                       ),
                     ],

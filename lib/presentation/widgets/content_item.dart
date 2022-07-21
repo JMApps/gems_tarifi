@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:gems_tarifi/data/model/content_model_item.dart';
+import 'package:gems_tarifi/domain/states/provider/app_settings_state.dart';
 import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:gems_tarifi/presentation/widgets/bottom_buttons.dart';
+import 'package:provider/provider.dart';
 
 class ContentItem extends StatelessWidget {
   ContentItem({Key? key, required this.item}) : super(key: key);
@@ -29,9 +31,9 @@ class ContentItem extends StatelessWidget {
               data: item.content,
               style: {
                 '#': Style(
-                    fontSize: FontSize(18),
-                    color: Colors.black,
-                    textAlign: TextAlign.justify,
+                    fontSize: FontSize(context.watch<AppSettingsState>().getTextSize),
+                    color: context.watch<AppSettingsState>().getIsDefaultColor ? Color(context.watch<AppSettingsState>().getTextColor) : myColor.mainTextColor,
+                    textAlign: context.watch<AppSettingsState>().getTextAlign[context.watch<AppSettingsState>().getToggleButtonIndex],
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero),
               },
@@ -40,7 +42,7 @@ class ContentItem extends StatelessWidget {
             const Divider(
               indent: 8,
               endIndent: 8,
-              color: Colors.black,
+              color: Colors.grey,
             ),
             BottomButtons(item: item),
           ],

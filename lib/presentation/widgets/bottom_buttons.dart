@@ -28,7 +28,10 @@ class BottomButtons extends StatelessWidget {
           ),
           label: Text(
             '– ${item.id}',
-            style: TextStyle(fontSize: 18, color: myColor.mainAccentColor,),
+            style: TextStyle(
+              fontSize: 18,
+              color: myColor.mainAccentColor,
+            ),
           ),
         ),
         IconButton(
@@ -61,10 +64,11 @@ class BottomButtons extends StatelessWidget {
         ),
         IconButton(
           icon: Icon(
-              item.favoriteState == 0
-                  ? CupertinoIcons.bookmark
-                  : CupertinoIcons.bookmark_fill,
-              color: myColor.mainAccentColor,),
+            item.favoriteState == 0
+                ? CupertinoIcons.bookmark
+                : CupertinoIcons.bookmark_fill,
+            color: myColor.mainAccentColor,
+          ),
           onPressed: () {
             context.read<MainAppState>().updateBookmarkState(
                   item.favoriteState == 0 ? 1 : 0,
@@ -87,7 +91,10 @@ class BottomButtons extends StatelessWidget {
               : item.favoriteState == 0
                   ? 'Добавлено'
                   : 'Удалено',
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
         duration: Duration(milliseconds: 500),
       ),

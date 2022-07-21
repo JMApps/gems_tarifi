@@ -8,7 +8,6 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[50],
       appBar: AppBar(
         leading: Image.asset(
           'assets/images/pearl_50.png',

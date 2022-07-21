@@ -16,9 +16,13 @@ class AppSettingsState with ChangeNotifier {
 
   double get getTextSize => _textSize;
 
-  Color _textColor = Colors.black54;
+  int _textColor = Color(0xff363636).value;
 
-  Color get getArabicTextColor => _textColor;
+  int get getTextColor => _textColor;
+
+  bool _isDefaultColor = false;
+
+  bool get getIsDefaultColor => _isDefaultColor;
 
   final List<bool> _isSelected = [false, false, false, true];
 
@@ -50,8 +54,14 @@ class AppSettingsState with ChangeNotifier {
   }
 
   updateTextColor(Color newColor) {
-    _textColor = newColor;
+    _textColor = newColor.value;
     mainSettingsBox.put(Constants.keyContentTextColor, newColor.value);
+    notifyListeners();
+  }
+
+  updateDefaultColorState(bool state) {
+    _isDefaultColor = state;
+    mainSettingsBox.put(Constants.keyContentDefaultTextColor, state);
     notifyListeners();
   }
 
@@ -63,7 +73,7 @@ class AppSettingsState with ChangeNotifier {
     notifyListeners();
   }
 
-  saveState(String key, int value) {
+  saveState(String key, var value) {
     mainSettingsBox.put(key, value);
     notifyListeners();
   }
@@ -71,6 +81,7 @@ class AppSettingsState with ChangeNotifier {
   initPreferences() async {
     _textSize = mainSettingsBox.get(Constants.keyContentTextSize);
     _textColor = mainSettingsBox.get(Constants.keyContentTextColor);
+    _isDefaultColor = mainSettingsBox.get(Constants.keyContentDefaultTextColor);
     _toggleButtonIndex = mainSettingsBox.get(Constants.keyContentTextAlignIndex);
     for (int i = 0; i < _isSelected.length; i++) {
       _isSelected[i] = i == _toggleButtonIndex;

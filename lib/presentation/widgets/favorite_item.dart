@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:gems_tarifi/data/model/content_model_item.dart';
+import 'package:gems_tarifi/domain/states/provider/app_settings_state.dart';
+import 'package:gems_tarifi/domain/theme/app_theme.dart';
 import 'package:gems_tarifi/presentation/widgets/bottom_buttons.dart';
+import 'package:provider/provider.dart';
 
 class FavoriteItem extends StatelessWidget {
   FavoriteItem({Key? key, required this.item}) : super(key: key);
@@ -10,6 +13,7 @@ class FavoriteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myColor = Theme.of(context).colorScheme;
     return Card(
       color: item.id.isOdd ? Colors.white : Colors.brown[50],
       elevation: 2,
@@ -27,9 +31,9 @@ class FavoriteItem extends StatelessWidget {
               data: item.content,
               style: {
                 '#': Style(
-                    fontSize: FontSize(18),
-                    color: Colors.black45,
-                    textAlign: TextAlign.justify,
+                    fontSize: FontSize(context.watch<AppSettingsState>().getTextSize),
+                    color: context.watch<AppSettingsState>().getIsDefaultColor ? Color(context.watch<AppSettingsState>().getTextColor) : myColor.mainTextColor,
+                    textAlign: context.watch<AppSettingsState>().getTextAlign[context.watch<AppSettingsState>().getToggleButtonIndex],
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero),
               },
@@ -38,7 +42,7 @@ class FavoriteItem extends StatelessWidget {
             const Divider(
               indent: 16,
               endIndent: 16,
-              color: Colors.brown,
+              color: Colors.grey,
             ),
             BottomButtons(item: item),
           ],
