@@ -21,6 +21,7 @@ class MainPage extends StatelessWidget {
       ],
       child: Builder(
         builder: (context) {
+          context.read<AppSettingsState>().initSettings();
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Жемчужины Тарифи',

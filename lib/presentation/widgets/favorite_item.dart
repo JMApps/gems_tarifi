@@ -31,7 +31,7 @@ class FavoriteItem extends StatelessWidget {
               data: item.content,
               style: {
                 '#': Style(
-                    fontSize: FontSize(context.watch<AppSettingsState>().getTextSize),
+                    fontSize: FontSize(context.watch<AppSettingsState>().getTextSize.toDouble()),
                     color: context.watch<AppSettingsState>().getIsDefaultColor ? Color(context.watch<AppSettingsState>().getTextColor) : myColor.mainTextColor,
                     textAlign: context.watch<AppSettingsState>().getTextAlign[context.watch<AppSettingsState>().getToggleButtonIndex],
                     padding: EdgeInsets.zero,
