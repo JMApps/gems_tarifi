@@ -25,7 +25,7 @@ class ToCitation extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
-                  labelText: 'Введите значение от 1 до 500',
+                  labelText: 'от 1 до 500',
                   labelStyle: TextStyle(
                     color: Theme.of(context).colorScheme.mainAccentColor,
                   ),
@@ -54,15 +54,14 @@ class ToCitation extends StatelessWidget {
                   color: Theme.of(context).colorScheme.mainAccentColor,
                 ),
                 onPressed: () {
-                  if (context.read<MainAppState>().getSelectedIndex > 0) {
-                    context.read<MainAppState>().updateSelectedIndex(0);
-                  }
-                  final index =
-                      int.parse(context.read<MainAppState>().getInputText);
+                  final index = int.parse(context.read<MainAppState>().getInputText);
                   if (index > 0) {
                     if (index < 501) {
+                      if (context.read<MainAppState>().getSelectedIndex > 0) {
+                        context.read<MainAppState>().updateSelectedIndex(0);
+                      }
                       Future.delayed(
-                        Duration(milliseconds: 100),
+                        Duration(milliseconds: 250),
                         () {
                           context.read<MainAppState>().toIndex(index - 1);
                           Navigator.of(context).pop();
