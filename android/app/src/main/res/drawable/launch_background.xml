@@ -4,6 +4,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/pearl_splash" />
+            android:src="@drawable/launch" />
     </item>
 </layer-list>
