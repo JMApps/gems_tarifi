@@ -49,7 +49,7 @@ class ContentPage extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          context.read<MainAppState>().toIndex();
+          context.read<MainAppState>().toDefaultIndex();
         },
       ),
       body: CupertinoScrollbar(

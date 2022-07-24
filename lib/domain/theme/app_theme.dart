@@ -4,6 +4,7 @@ class AppTheme {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Color(0xFFFAFAFA),
     fontFamily: 'Gilroy',
+    canvasColor: Color(0xFFEFEBE9),
     colorScheme: const ColorScheme.light(),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF4E342E),
@@ -14,14 +15,12 @@ class AppTheme {
         fontFamily: 'Gilroy',
       ),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFEFEBE9),
-    ),
   );
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Color(0xFF263238),
     fontFamily: 'Gilroy',
+    canvasColor: Color(0xFF192226),
     colorScheme: const ColorScheme.dark(),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF192226),
@@ -31,9 +30,6 @@ class AppTheme {
         fontSize: 20,
         fontFamily: 'Gilroy',
       ),
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFF192226),
     ),
   );
 }
