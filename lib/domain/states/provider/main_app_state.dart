@@ -11,7 +11,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MainAppState with ChangeNotifier {
-
   DatabaseQuery _databaseQuery = DatabaseQuery();
 
   DatabaseQuery get getDatabaseQuery => _databaseQuery;
@@ -23,6 +22,10 @@ class MainAppState with ChangeNotifier {
   int get getSelectedIndex => _selectedIndex;
 
   final _scrollPositioned = ItemScrollController();
+
+  String _inputText = '';
+
+  String get getInputText => _inputText;
 
   ItemScrollController get getScrollPositioned => _scrollPositioned;
 
@@ -36,7 +39,7 @@ class MainAppState with ChangeNotifier {
     notifyListeners();
   }
 
-  toIndex() {
+  toDefaultIndex() {
     var randomNumber = Random();
     _scrollPositioned.scrollTo(
         index: randomNumber.nextInt(500),
@@ -44,12 +47,23 @@ class MainAppState with ChangeNotifier {
         curve: Curves.easeInOutCubic);
   }
 
+  updateInputText(String text) {
+    _inputText = text;
+    notifyListeners();
+  }
+
+  toIndex(int toIndex) {
+    _scrollPositioned.scrollTo(
+        index: toIndex,
+        duration: Duration(seconds: 1),
+        curve: Curves.easeInOutCubic);
+  }
 
   takeScreenshot(ContentModelItem item) async {
     final unit8List = await _screenshotController.captureFromWidget(TakeScreenShot(item: item));
     String tempPath = (Platform.isAndroid
-        ? await getExternalStorageDirectory()
-        : await getApplicationDocumentsDirectory())!.path;
+            ? await getExternalStorageDirectory()
+            : await getApplicationDocumentsDirectory())!.path;
     File file = File('$tempPath/citation_${item.id}.jpg');
     await file.writeAsBytes(unit8List);
     await Share.shareFiles([file.path], sharePositionOrigin: Rect.fromLTWH(0, 0, 10, 10),
