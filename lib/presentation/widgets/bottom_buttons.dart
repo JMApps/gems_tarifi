@@ -14,6 +14,7 @@ class BottomButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     final myColor = Theme.of(context).colorScheme;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,7 +51,11 @@ class BottomButtons extends StatelessWidget {
             color: Colors.grey[600],
           ),
           onPressed: () {
-            Share.share('${item.contentForShare}\n\n‘Абду-ль-‘Азиз ат-Тарифи');
+            Share.share(
+              '${item.contentForShare}\n\n‘Абду-ль-‘Азиз ат-Тарифи',
+              sharePositionOrigin:
+                  Rect.fromLTWH(0, 0, size.width, size.height / 2),
+            );
           },
         ),
         IconButton(
