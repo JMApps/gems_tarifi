@@ -27,9 +27,9 @@ class DatabaseHelper {
         ? await getExternalStorageDirectory()
         : await getApplicationSupportDirectory();
 
-    String _path = join(documentDirectory!.path, 'gems_db_2.db');
+    String _path = join(documentDirectory!.path, 'gems_db_3.db');
 
-    String _toDelete = '${documentDirectory.path}/gems_db_1.db';
+    String _toDelete = '${documentDirectory.path}/gems_db_2.db';
     var _del_1 = await databaseExists(_toDelete);
 
     if (_del_1) {
@@ -45,7 +45,7 @@ class DatabaseHelper {
         Exception('Invalid database');
       }
 
-      ByteData data = await rootBundle.load(join('assets/databases', 'gems_db_2.db'));
+      ByteData data = await rootBundle.load(join('assets/databases', 'gems_db_3.db'));
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(_path).writeAsBytes(bytes, flush: true);
     }
