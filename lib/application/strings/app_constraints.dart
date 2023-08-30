@@ -11,6 +11,6 @@ class AppConstraints {
   static const String keyAdaptiveTheme = 'key_gems_adaptive_theme';
   static const String keyDarkTheme = 'key_gems_dark_theme';
   static const String keyWakeLock = 'key_gems_wake_lock';
-  static const String keyLastCitation = 'key_gems_lesson_last_citation';
+  static const String keyLastPageCitation = 'key_gems_lesson_last_page_citation';
   static const String keyFavoriteCitationIds = 'key_gems_favorite_citation_ids';
 }

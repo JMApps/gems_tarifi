@@ -69,4 +69,8 @@ extension CustomColors on ColorScheme {
   Color get circleIdColor => brightness == Brightness.light
       ? const Color(0xFFE0E0E0)
       : const Color(0xFF2E3C44);
+
+  Color get defaultColor => brightness == Brightness.light
+      ? const Color(0xFF2F2F2F)
+      : const Color(0xFFCBCBCB);
 }

@@ -4,6 +4,7 @@ import 'package:gems_tarifi/application/state/main_app_state.dart';
 import 'package:gems_tarifi/application/strings/app_strings.dart';
 import 'package:gems_tarifi/application/themes/app_theme.dart';
 import 'package:gems_tarifi/presentation/lists/app_settings_list.dart';
+import 'package:gems_tarifi/presentation/lists/ciations_page_list.dart';
 import 'package:gems_tarifi/presentation/lists/citation_favorites_list.dart';
 import 'package:gems_tarifi/presentation/lists/citations_list.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final List<Widget> _mainPages = [
     const CitationsList(),
+    const CitationPageList(),
     const CitationFavoritesList(),
     const AppSettingsList(),
   ];
@@ -37,7 +39,7 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: mainAppState.getBottomItemIndex == 0
           ? FloatingActionButton.small(
               onPressed: () {
-                mainAppState.setDefaultItem();
+                mainAppState.setListDefaultItem();
               },
               backgroundColor: appColors.primaryColor,
               child: const Icon(CupertinoIcons.arrow_2_squarepath),
@@ -48,12 +50,17 @@ class _MainPageState extends State<MainPage> {
           viewPadding: EdgeInsets.only(bottom: 12),
         ),
         child: BottomNavigationBar(
-          showUnselectedLabels: false,
+          unselectedItemColor: appColors.defaultColor,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.collections),
               label: AppStrings.citations,
               tooltip: AppStrings.citations,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.book),
+              label: AppStrings.pages,
+              tooltip: AppStrings.pages,
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.bookmark),

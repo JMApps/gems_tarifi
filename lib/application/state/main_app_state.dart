@@ -14,8 +14,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MainAppState extends ChangeNotifier {
-  final Box _appSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
-
   final Box _favoriteCitationsBox = Hive.box(AppConstraints.keyAppFavoritesBox);
 
   final ScreenshotController _screenshotController = ScreenshotController();
@@ -24,24 +22,16 @@ class MainAppState extends ChangeNotifier {
 
   ItemScrollController get getItemScrollController => _itemScrollController;
 
-  final ItemPositionsListener _itemPositionsListener = ItemPositionsListener.create();
+  late final PageController _pageController;
 
-  ItemPositionsListener get getItemPositionsListener => _itemPositionsListener;
+  PageController get getPageController => _pageController;
 
   final Random random = Random();
 
   MainAppState() {
     _favoriteCitationsList = _favoriteCitationsBox.get(AppConstraints.keyFavoriteCitationIds, defaultValue: <int>[]);
-  }
-
-  int _lastCitationId = 1;
-
-  int get getLastCitationId => _lastCitationId;
-
-  set saveLastCitationId(int citationId) {
-    _lastCitationId = citationId;
-    _appSettingsBox.put(AppConstraints.keyLastCitation, citationId);
-    notifyListeners();
+    _currentPage = _favoriteCitationsBox.get(AppConstraints.keyLastPageCitation, defaultValue: 0);
+    _pageController = PageController(initialPage: _currentPage);
   }
 
   int _bottomItemIndex = 0;
@@ -50,6 +40,16 @@ class MainAppState extends ChangeNotifier {
 
   set changeBottomIndex(int index) {
     _bottomItemIndex = index;
+    notifyListeners();
+  }
+
+  late int _currentPage;
+
+  int get getCurrentPage => _currentPage;
+
+  set saveCurrentPage(int page) {
+    _currentPage = page;
+    _favoriteCitationsBox.put(AppConstraints.keyLastPageCitation, page);
     notifyListeners();
   }
 
@@ -81,13 +81,13 @@ class MainAppState extends ChangeNotifier {
     );
   }
 
-  toggleFavoriteState(int citationId) {
+  Future<void> toggleFavoriteState(int citationId) async {
     if (_favoriteCitationsList.contains(citationId)) {
       _favoriteCitationsList.remove(citationId);
     } else {
       _favoriteCitationsList.add(citationId);
     }
-    _favoriteCitationsBox.put(AppConstraints.keyFavoriteCitationIds, _favoriteCitationsList);
+    await _favoriteCitationsBox.put(AppConstraints.keyFavoriteCitationIds, _favoriteCitationsList);
     notifyListeners();
   }
 
@@ -95,7 +95,7 @@ class MainAppState extends ChangeNotifier {
     return _favoriteCitationsList.contains(citationId);
   }
 
-  Future<void> setDefaultItem() async {
+  Future<void> setListDefaultItem() async {
     await _itemScrollController.scrollTo(index: random.nextInt(605), duration: const Duration(milliseconds: 500));
   }
 
@@ -103,10 +103,5 @@ class MainAppState extends ChangeNotifier {
     final documentText = parse(htmlText);
     final String parsedString = parse(documentText.body!.text).documentElement!.text;
     return parsedString;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }
