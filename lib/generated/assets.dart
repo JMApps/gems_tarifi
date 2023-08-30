@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String databasesGemsDb4 = 'assets/databases/gems_db_4.db';
   static const String fontsGilroyMedium = 'assets/fonts/gilroy_medium.ttf';
   static const String fontsMontserratMedium = 'assets/fonts/montserrat_medium.ttf';
   static const String fontsNexaReqular = 'assets/fonts/nexa_reqular.ttf';

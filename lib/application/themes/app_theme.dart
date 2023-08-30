@@ -50,7 +50,11 @@ class AppTheme {
 }
 
 extension CustomColors on ColorScheme {
-  Color get primaryDarkColor => brightness == Brightness.light
-      ? const Color(0x40795548)
-      : const Color(0x401B2328);
+  Color get primaryColor => brightness == Brightness.light
+      ? const Color(0xFF673AB7)
+      : const Color(0xFFF44336);
+
+  Color get circleIdColor => brightness == Brightness.light
+      ? const Color(0xFFE0E0E0)
+      : const Color(0xFF2E3C44);
 }
