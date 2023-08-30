@@ -10,6 +10,8 @@ class AppStrings {
   static const added = 'Добавлено';
   static const removed = 'Удалено';
   static const bookmarksIsEmpty = 'Избранного нет';
+  static const searchByCitations = 'Поиск по цитатам...';
+  static const searchQueryIsEmpty = 'По вашему запросу ничего не найдено';
 
   // Settings
   static const String textFont = 'Шрифт';

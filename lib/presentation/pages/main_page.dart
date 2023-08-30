@@ -4,9 +4,10 @@ import 'package:gems_tarifi/application/state/main_app_state.dart';
 import 'package:gems_tarifi/application/strings/app_strings.dart';
 import 'package:gems_tarifi/application/themes/app_theme.dart';
 import 'package:gems_tarifi/presentation/lists/app_settings_list.dart';
-import 'package:gems_tarifi/presentation/lists/ciations_page_list.dart';
 import 'package:gems_tarifi/presentation/lists/citation_favorites_list.dart';
+import 'package:gems_tarifi/presentation/lists/citation_page_list.dart';
 import 'package:gems_tarifi/presentation/lists/citations_list.dart';
+import 'package:gems_tarifi/presentation/widgets/search_citation_delegate.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -31,6 +32,21 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.appName),
+        actions: [
+          mainAppState.getBottomItemIndex == 0
+              ? IconButton(
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: SearchCitationDelegate(
+                        hintText: AppStrings.searchByCitations,
+                      ),
+                    );
+                  },
+                  icon: const Icon(CupertinoIcons.search),
+                )
+              : const SizedBox(),
+        ],
       ),
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),
