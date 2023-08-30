@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:html/parser.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MainAppState extends ChangeNotifier {
@@ -18,9 +20,28 @@ class MainAppState extends ChangeNotifier {
 
   final ScreenshotController _screenshotController = ScreenshotController();
 
+  final ItemScrollController _itemScrollController = ItemScrollController();
+
+  ItemScrollController get getItemScrollController => _itemScrollController;
+
+  final ItemPositionsListener _itemPositionsListener = ItemPositionsListener.create();
+
+  ItemPositionsListener get getItemPositionsListener => _itemPositionsListener;
+
+  final Random random = Random();
+
   MainAppState() {
-    _favoriteCitationsList = _favoriteCitationsBox
-        .get(AppConstraints.keyFavoriteCitationIds, defaultValue: <int>[]);
+    _favoriteCitationsList = _favoriteCitationsBox.get(AppConstraints.keyFavoriteCitationIds, defaultValue: <int>[]);
+  }
+
+  int _lastCitationId = 1;
+
+  int get getLastCitationId => _lastCitationId;
+
+  set saveLastCitationId(int citationId) {
+    _lastCitationId = citationId;
+    _appSettingsBox.put(AppConstraints.keyLastCitation, citationId);
+    notifyListeners();
   }
 
   int _bottomItemIndex = 0;
@@ -66,8 +87,7 @@ class MainAppState extends ChangeNotifier {
     } else {
       _favoriteCitationsList.add(citationId);
     }
-    _favoriteCitationsBox.put(
-        AppConstraints.keyFavoriteCitationIds, _favoriteCitationsList);
+    _favoriteCitationsBox.put(AppConstraints.keyFavoriteCitationIds, _favoriteCitationsList);
     notifyListeners();
   }
 
@@ -75,9 +95,18 @@ class MainAppState extends ChangeNotifier {
     return _favoriteCitationsList.contains(citationId);
   }
 
+  Future<void> setDefaultItem() async {
+    await _itemScrollController.scrollTo(index: random.nextInt(605), duration: const Duration(milliseconds: 500));
+  }
+
   String _parseHtmlText(String htmlText) {
     final documentText = parse(htmlText);
     final String parsedString = parse(documentText.body!.text).documentElement!.text;
     return parsedString;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

@@ -23,4 +23,17 @@ class AppStyles {
       topLeft: Radius.elliptical(35, 25),
     ),
   );
+
+  static const List<String> getFont = [
+    'Gilroy',
+    'Montserrat',
+    'Nexa',
+  ];
+
+  static const List<TextAlign> getAlign = [
+    TextAlign.left,
+    TextAlign.center,
+    TextAlign.right,
+    TextAlign.justify,
+  ];
 }

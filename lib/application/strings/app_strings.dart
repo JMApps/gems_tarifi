@@ -9,4 +9,16 @@ class AppStrings {
   static const added = 'Добавлено';
   static const removed = 'Удалено';
   static const bookmarksIsEmpty = 'Избранного нет';
+
+  // Settings
+  static const String textFont = 'Шрифт';
+  static const String alignText = 'Расположение текста';
+  static const String textSize = 'Размер текста';
+  static const String textColor = 'Цвет текста';
+  static const String forLightTheme = 'Для светлой темы';
+  static const String forDarkTheme = 'Для темной темы';
+  static const String close = 'Закрыть';
+  static const String adaptiveTheme = 'Адаптивная тема';
+  static const String darkTheme = 'Темная тема';
+  static const String displayAlways = 'Дисплей всегда включён';
 }

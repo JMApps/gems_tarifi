@@ -7,6 +7,12 @@ class AppTheme {
     primarySwatch: Colors.deepPurple,
     scaffoldBackgroundColor: const Color(0xFFFAFAFA),
     fontFamily: 'Nexa',
+    textTheme: const TextTheme(
+      headlineMedium: TextStyle(
+        fontSize: 18,
+        fontFamily: 'Nexa',
+      ),
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF795548),
       centerTitle: true,
@@ -30,6 +36,12 @@ class AppTheme {
     primarySwatch: Colors.red,
     scaffoldBackgroundColor: const Color(0xFF2E3C44),
     fontFamily: 'Nexa',
+    textTheme: const TextTheme(
+      headlineMedium: TextStyle(
+        fontSize: 18,
+        fontFamily: 'Nexa',
+      ),
+    ),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,

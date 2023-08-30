@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gems_tarifi/application/state/content_settings_state.dart';
 import 'package:gems_tarifi/application/state/main_app_state.dart';
 import 'package:gems_tarifi/application/strings/app_strings.dart';
 import 'package:gems_tarifi/application/themes/app_theme.dart';
@@ -17,6 +18,9 @@ class RootPage extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => MainAppState(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ContentSettingsState(),
         ),
       ],
       child: MaterialApp(
