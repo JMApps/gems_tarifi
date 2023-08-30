@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:gems_tarifi/application/strings/app_constraints.dart';
+import 'package:gems_tarifi/application/strings/app_strings.dart';
 import 'package:gems_tarifi/domain/models/citation_model.dart';
 import 'package:gems_tarifi/presentation/widgets/card_screenshot.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -58,11 +59,11 @@ class MainAppState extends ChangeNotifier {
   List<int> get getFavoriteCitationsList => _favoriteCitationsList;
 
   Future<void> copyCitation(String citation) async {
-    await FlutterClipboard.copy(_parseHtmlText(citation));
+    await FlutterClipboard.copy(_parseHtmlText('$citation\n\n${AppStrings.authorName}'));
   }
 
   Future<void> shareCitation(String citation) async {
-    await Share.share(_parseHtmlText(citation), sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2));
+    await Share.share(_parseHtmlText('$citation\n\n${AppStrings.authorName}'), sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2));
   }
 
   Future<void> takeScreenshot(CitationModel model) async {

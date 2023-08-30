@@ -6,7 +6,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 class ContentSettingsState extends ChangeNotifier {
   final _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
 
-  int _fontIndex = 0;
+  int _fontIndex = 2;
 
   int get getFontIndex => _fontIndex;
 
@@ -16,7 +16,7 @@ class ContentSettingsState extends ChangeNotifier {
     notifyListeners();
   }
 
-  int _textAlignIndex = 3;
+  int _textAlignIndex = 1;
 
   int get getTextAlignIndex => _textAlignIndex;
 
@@ -89,8 +89,8 @@ class ContentSettingsState extends ChangeNotifier {
   }
 
   ContentSettingsState() {
-    _fontIndex = _contentSettingsBox.get(AppConstraints.keyFontIndex, defaultValue: 0);
-    _textAlignIndex = _contentSettingsBox.get(AppConstraints.keyTextAlign, defaultValue: 3);
+    _fontIndex = _contentSettingsBox.get(AppConstraints.keyFontIndex, defaultValue: 2);
+    _textAlignIndex = _contentSettingsBox.get(AppConstraints.keyTextAlign, defaultValue: 1);
     _textSize = _contentSettingsBox.get(AppConstraints.keyTextSize, defaultValue: 18.0);
     _lightTextColor = Color(_contentSettingsBox.get(AppConstraints.keyLightTextColor, defaultValue: Colors.grey.shade900.value));
     _darkTextColor = Color(_contentSettingsBox.get(AppConstraints.keyDarkTextColor, defaultValue: Colors.grey.shade50.value));
